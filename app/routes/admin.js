@@ -5,8 +5,8 @@
 const router = require('koa-router')()
 const adminController = require('../controller/admin')
 console.log(adminController)
-
-router.get('/register', adminController.register)
+let a = new adminController()
+router.get('/register', a.register)
  
 
 module.exports = router

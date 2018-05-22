@@ -5,22 +5,25 @@ const bodyParser = require('koa-bodyparser')
 const session = require('koa-session-minimal')
 const config = require('config-lite')(__dirname)
 const chalk = require('chalk')
+const Boom = require('boom')
 const db = require('./mongodb/db')
 
 const router = require('./routes/index')
 
-
 const app = new Koa()
 
 const loggerAsync = require('./middleware/logger-async')
-// 初始化路由中间件
-router(app)
+
 app.use(loggerAsync())
 app.use(bodyParser())
 
-app.use( async ( ctx ) => {
-  ctx.body = 'hello koa2'
-})
+// 初始化路由中间件
+app.use(router.routes());
+app.use(router.allowedMethods({
+	throw: true,
+	notImplemented: () => new Boom.notImplemented(),
+	methodNotAllowed: () => new Boom.methodNotAllowed()
+}))
 
 app.listen(config.port, () => {
 	console.log(
