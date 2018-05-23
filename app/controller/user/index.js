@@ -3,6 +3,7 @@ const AdminModel = require('../../models/admin')
 class User {
     constructor() {}
     async getUserInfo(ctx, next) {
+        debugger
         // 当GET请求时候返回表单页面
         let html = `
             <h1>koa2 request post demo</h1>
@@ -19,6 +20,7 @@ class User {
         ctx.body = html
     }
     async test(req, res, next) {
+        debugger
         console.log('1111111')
         let postData = req.request.body
         res.body = postData

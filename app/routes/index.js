@@ -2,8 +2,9 @@
  * 整合所有子路由
  */
 
-const router = require('koa-router')()
-const Boom = require('boom')
+const Router = require('koa-router')
+const router = new Router()
+// const Boom = require('boom')
 
 const home = require('./home')
 const api = require('./api')
