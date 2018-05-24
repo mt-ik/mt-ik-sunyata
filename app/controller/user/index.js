@@ -1,13 +1,17 @@
-const AdminModel = require('../../models/admin')
-
+const UserModel = require('../../models/user')
+const crypto = require('crypto')
+const dtime = require('time-formater'
+)
 class User {
-    constructor() {}
+    constructor() {
+        this.encryption = this.encryption.bind(this)
+    }
     async getUserInfo(ctx, next) {
         debugger
         // 当GET请求时候返回表单页面
         let html = `
             <h1>koa2 request post demo</h1>
-            <form method="POST" action="/">
+            <form method="get" action="/api/user/register">
                 <p>userName</p>
                 <input name="userName" /><br/>
                 <p>nickName</p>
@@ -19,48 +23,47 @@ class User {
         `
         ctx.body = html
     }
-    async test(req, res, next) {
-        debugger
-        console.log('1111111')
-        let postData = req.request.body
-        res.body = postData
-    }
-    async register(req, res, next) {
+    async register(ctx, next) {
         try {
-            const admin = await AdminModel.findOne({ user_name })
-            if (admin) {
+            const userName = '许广宇'
+            const status = 0
+            const user = await UserModel.findOne({ userName })
+            console.log(user)
+            if (user) {
                 console.log('该用户已存在')
-                res.send({
+                ctx.body = {
                     status: 0,
                     type: 'USER_HAS_EXIST',
                     message: '该用户已经存在',
-                })
+                }
             } else {
-                const adminTip = status == 1 ? '管理员' : '超级管理员'
-                const admin_id = await this.getId('admin_id');
-                const newpassword = this.encryption(password);
-                const newAdmin = {
-                    user_name, 
-                    password: newpassword, 
-                    id: admin_id,
-                    create_time: dtime().format('YYYY-MM-DD'),
-                    admin: adminTip,
+                const userTip = status == 1 ? '管理员' : '超级管理员'
+                // const uid = await this.getId('uid')
+                const uid = 271040422
+                const password = 'xgy5201314'
+                // const newpassword = this.encryption(password);
+                const newUser = {
+                    userName, 
+                    password: password, 
+                    uid,
+                    createTime: dtime().format('YYYY-MM-DD'),
+                    admin: userTip,
                     status,
                 }
-                await AdminModel.create(newAdmin)
-                req.session.admin_id = admin_id;
-                res.send({
+                await UserModel.create(newUser)
+                // req.session.uid = uid
+                ctx.body = {
                     status: 1,
                     message: '注册管理员成功',
-                })
+                }
             }
         } catch (e) {
-            console.log('注册管理员失败', err);
-            res.send({
+            console.log('注册管理员失败', e)
+            ctx.body ={
                 status: 0,
                 type: 'REGISTER_ADMIN_FAILED',
                 message: '注册管理员失败',
-            })
+            }
         }
     }
     encryption(password){

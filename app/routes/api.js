@@ -11,7 +11,7 @@ const userController = require('./../controller/user')
 //   .post('/user/signUp', userInfoController.signUp)
 
 routers = router
-.post('/user/getUserInfo', userController.getUserInfo)
-.post('/user/test', userController.test)
+.get('/user/getUserInfo', userController.getUserInfo)
+.get('/user/register', userController.register)
 
 module.exports = routers
