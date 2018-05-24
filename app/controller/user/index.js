@@ -5,6 +5,7 @@ const dtime = require('time-formater'
 class User {
     constructor() {
         this.encryption = this.encryption.bind(this)
+        this.register = this.register.bind(this)
     }
     async getUserInfo(ctx, next) {
         debugger
@@ -24,8 +25,9 @@ class User {
         ctx.body = html
     }
     async register(ctx, next) {
+        console.log(this, 'this')
         try {
-            const userName = '许广宇'
+            const userName = '道之'
             const status = 0
             const user = await UserModel.findOne({ userName })
             console.log(user)
@@ -41,10 +43,10 @@ class User {
                 // const uid = await this.getId('uid')
                 const uid = 271040422
                 const password = 'xgy5201314'
-                // const newpassword = this.encryption(password);
+                const passwordMD5 = this.encryption(password);
                 const newUser = {
                     userName, 
-                    password: password, 
+                    password: passwordMD5, 
                     uid,
                     createTime: dtime().format('YYYY-MM-DD'),
                     admin: userTip,
@@ -65,6 +67,9 @@ class User {
                 message: '注册管理员失败',
             }
         }
+    }
+    async testPost(res, req, err) {
+        console.log('111111')
     }
     encryption(password){
         const newpassword = this.Md5(this.Md5(password).substr(2, 7) + this.Md5(password));
