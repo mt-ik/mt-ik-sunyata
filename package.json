@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --inspect index.js",
-    "dev": "node -harmony index.js"
+    "dev": "webpack-dev-server --watch",
+    "build": "webpack --mode production"
   },
   "author": "xugy",
   "license": "MIT",
@@ -24,5 +25,10 @@
     "mongoose": "^5.1.1",
     "time-formater": "^1.0.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4"
+  }
 }
