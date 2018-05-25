@@ -23,6 +23,7 @@ class User {
         ctx.body = html
     }
     async register(ctx, next) {
+        debugger
         const { userName, password, status = 1 } = ctx.request.body
         try {
             if (!userName) {
