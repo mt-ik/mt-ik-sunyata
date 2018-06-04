@@ -4,13 +4,15 @@ const path = require('path')
 const cors = require('koa2-cors');
 const logger = require('koa-logger')
 const bodyParser = require('koa-bodyparser')
+const jwt = require('jsonwebtoken')
+const jwtKoa = require('koa-jwt')
 const session = require('koa-session-minimal')
 const config = require('config-lite')(__dirname)
 const chalk = require('chalk')
 // const Boom = require('boom')
 const db = require('./mongodb/db')
-
 const router = require('./routes/index')
+const secret = 'jwtAlipay'
 
 const app = new Koa()
 // const loggerAsync = require('./middleware/logger-async')
@@ -18,9 +20,9 @@ const app = new Koa()
 app.use(cors({
 	origin: function (ctx) {
 		if (ctx.url === '/test') {
-			return false;
+			return false
 		}
-		return 'http://0.0.0.0:8891/';
+		return '*'
 	},
 	exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
 	maxAge: 5,
@@ -28,6 +30,11 @@ app.use(cors({
 	allowMethods: ['GET', 'POST', 'DELETE'],
 	allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }))
+
+app.use(jwtKoa({secret}).unless({
+	path: [/^\/api\/user\/getToken/] //数组中的路径不需要通过jwt验证
+}))
+
 app.use(logger())
 app.use(bodyParser())
 

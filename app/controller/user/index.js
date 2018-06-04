@@ -2,6 +2,7 @@ const UserModel = require('../../models/user')
 const crypto = require('crypto')
 const formidable = require('koa-formidable')
 const dtime = require('time-formater')
+const jwt = require('jsonwebtoken')
 
 class User {
     constructor() {
@@ -21,6 +22,26 @@ class User {
             </form>
         `
         ctx.body = html
+    }
+    async getToken(ctx, next) {
+        debugger
+        const user = ctx.request.body
+        if (user && user.account) {
+            let userToken = {
+                account: user.account
+            }
+            const token = jwt.sign(userToken, 'jwtAlipay', { expiresIn: '1h' })
+            ctx.body = {
+                message: '获取token成功',
+                code: 1,
+                token
+            }
+        } else {
+            ctx.body = {
+                code: 0,
+                message: '参数错误'
+            }
+        }
     }
     async register(ctx, next) {
         debugger
