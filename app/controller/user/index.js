@@ -1,6 +1,5 @@
 const UserModel = require('../../models/user')
 const crypto = require('crypto')
-const formidable = require('koa-formidable')
 const dtime = require('time-formater')
 const jwt = require('jsonwebtoken')
 

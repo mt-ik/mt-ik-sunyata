@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 const config = require('config-lite')(__dirname)
 const chalk = require('chalk')
-mongoose.connect(config.url);
-mongoose.Promise = global.Promise;
+mongoose.connect(config.url, { useNewUrlParser: true })
+mongoose.Promise = global.Promise
 
 const db = mongoose.connection;
 
