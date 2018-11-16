@@ -1,4 +1,4 @@
-CREATE TABLE   IF NOT EXISTS  `data` (
+CREATE TABLE   IF NOT EXISTS  `DATA` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `data_info` json DEFAULT NULL,
   `create_time` varchar(20) DEFAULT NULL,

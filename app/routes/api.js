@@ -6,8 +6,6 @@ const router = require('koa-router')()
 const userController = require('./../controller/user')
 
 routers = router
-.post('/user/getToken', userController.getToken)
-.get('/user/getUserInfo', userController.getUserInfo)
-.post('/user/register', userController.register)
+.post('/api/getToken', userController.getToken)
 
 module.exports = routers

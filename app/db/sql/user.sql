@@ -1,7 +1,9 @@
-CREATE TABLE   IF NOT EXISTS`test`(
-    `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE   IF NOT EXISTS`USER`(
+    `id` int(32) NOT NULL AUTO_INCREMENT,
     `email` varchar(255) DEFAULT NULL,
     `password` varchar(255) DEFAULT NULL,
+    `phone_part` int(16),
+    `phone` int(32),
     `name` varchar(255) DEFAULT NULL,
     `nick` varchar(255) DEFAULT NULL,
     `detail_info` json DEFAULT NULL,
@@ -11,6 +13,5 @@ CREATE TABLE   IF NOT EXISTS`test`(
     PRIMARY KEY(`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-INSERT INTO`test` set email = '1@example.com', password = '123456';
-INSERT INTO`test` set email = '2@example.com', password = '123456';
-INSERT INTO`test` set email = '3@example.com', password = '123456';
+INSERT INTO `USER` set email = '18518165912@163.com', password = '5201314', name = '许广宇', nick = '道', phone_part = 185, phone = 18165912;
+
