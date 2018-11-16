@@ -9,7 +9,6 @@ const jwtKoa = require('koa-jwt')
 const session = require('koa-session-minimal')
 const config = require('config-lite')(__dirname)
 const chalk = require('chalk')
-// const db = require('./mongodb/db')
 const router = require('./routes/index')
 const secret = 'jwtAlipay'
 
@@ -43,6 +42,6 @@ app.use(router.allowedMethods())
 
 app.listen(config.port, () => {
 	console.log(
-		chalk.green(`成功监听端口：${config.port}`)
+		chalk.green(`成功监听端口：${config.port}~~~~~`)
 	)
 });

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon index.js",
     "dev": "webpack-dev-server --watch",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "table": "node ./app/db/index.js"
   },
   "author": "xugy",
   "license": "MIT",
@@ -22,7 +23,7 @@
     "koa-session-minimal": "^3.0.4",
     "koa-static": "^5.0.0",
     "koa2-cors": "^2.0.6",
-    "mongoose": "^5.3.12",
+    "mysql": "^2.16.0",
     "time-formater": "^1.0.3"
   },
   "devDependencies": {
