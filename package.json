@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "debug": "nodemon --inspect-brk index.js",
     "dev": "webpack-dev-server --watch",
     "build": "webpack --mode production",
+    "mocha": "./node_modules/.bin/mocha",
     "sql": "node ./app/db/index.js"
   },
   "author": "xugy",
@@ -17,6 +19,8 @@
     "jsonwebtoken": "^8.4.0",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
+    "koa-convert": "^1.2.0",
+    "koa-jsonp": "^2.0.2",
     "koa-jwt": "^3.5.1",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
@@ -24,12 +28,16 @@
     "koa-static": "^5.0.0",
     "koa2-cors": "^2.0.6",
     "mysql": "^2.16.0",
-    "time-formater": "^1.0.3"
+    "time-formater": "^1.0.3",
+    "validator": "^10.9.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "clean-webpack-plugin": "^1.0.0",
     "koa-mysql-session": "^0.0.2",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.6",
+    "supertest": "^3.3.0",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
